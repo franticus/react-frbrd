@@ -1,3 +1,17 @@
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+
+  &_input {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 80%;
+  }
+}
+
 .user_list {
   display: flex;
   flex-direction: column;
@@ -10,7 +24,8 @@
 }
 
 .user_item {
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #333;
   border-radius: 20px;
   width: 100%;
   padding: 10px 20px;
@@ -23,31 +38,45 @@
 .user_info {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   flex-wrap: wrap;
+
+  &_name {
+    color: #ff5d5d;
+  }
+
+  &_username {
+    color: #5dff60;
+  }
+
+  &_email {
+    color: #5d96ff;
+  }
 }
 
 .button {
   cursor: pointer;
   background: transparent;
   border-radius: 10px;
-  border: 1px solid #eee;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s;
+  color: #fff;
   font-size: 20px;
+  min-width: 40px;
   width: 40px;
   height: 40px;
-}
 
-.button:hover {
-  cursor: pointer;
-  background: #ff5d5d;
-  border: 1px solid #ff5d5d;
-  color: #fff;
+  &:hover:hover {
+    cursor: pointer;
+    background: #ff5d5d;
+    border: 1px solid #ff5d5d;
+  }
 }
 
 @media (max-width: 360px) {
   .user_item {
     flex-wrap: wrap;
+    justify-content: center;
   }
 }

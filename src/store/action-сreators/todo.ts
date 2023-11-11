@@ -17,7 +17,7 @@ export const fetchTodos = (page = 1, limit = 10) => {
     } catch (err) {
       dispatch({
         type: TodoActionTypes.FETCH_TODOS_ERROR,
-        payload: 'Произошла ошибка при загрузке списка дел',
+        payload: 'An error occurred while loading todos.',
       });
     }
   };
