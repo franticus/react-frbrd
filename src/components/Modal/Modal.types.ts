@@ -1,5 +1,4 @@
-import { User } from "../UserList/User.types";
-
+import { User } from "../../types/user";
 export interface ModalProps {
   user: User;
   onClose: () => void;

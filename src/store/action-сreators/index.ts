@@ -1,4 +1,4 @@
-import * as UserActionCreator from './user';
+import * as UserActionCreator from './userAction';
 
 const userActionCreators = { ...UserActionCreator };
 

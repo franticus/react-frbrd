@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
-import { User } from './User.types';
 import { highlightText } from '../../utils/highlightText';
 import Modal from '../Modal/Modal';
 import SearchField from '../SearchField/SearchField';
 import s from './UserList.module.scss';
+import { User } from '../../types/user';
 
 const UserList: React.FC = () => {
   const { users, error, loading } = useTypedSelector((state) => state.user);
@@ -46,6 +46,7 @@ const UserList: React.FC = () => {
 
   const handleResetUsers = () => {
     setFilteredUsers(users);
+    setSearchTerm('');
   };
 
   const renderModal = () => {
