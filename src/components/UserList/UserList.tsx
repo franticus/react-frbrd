@@ -46,6 +46,25 @@ const UserList: React.FC = () => {
     setFilteredUsers(users);
   };
 
+  const highlightText = (text: string) => {
+    if (!searchTerm) return text;
+    let idx = text.toLowerCase().indexOf(searchTerm.toLowerCase());
+    console.log('idx:', idx)
+    if (idx !== -1) {
+      let before = text.substring(0, idx);
+      let highlight = text.substring(idx, idx + searchTerm.length);
+      let after = text.substring(idx + searchTerm.length);
+      return (
+        <span>
+          {before}
+          <span className={s.highlight}>{highlight}</span>
+          {after}
+        </span>
+      );
+    }
+    return text;
+  };
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -75,9 +94,9 @@ const UserList: React.FC = () => {
             onClick={() => handleChoosenUser(user.id)}
           >
             <div className={s.user_info}>
-              <span className={s.user_info_name}>{user.name} |</span>
-              <span className={s.user_info_username}>{user.username} |</span>
-              <span className={s.user_info_email}>{user.email}</span>
+              <span className={s.user_info_name}>{highlightText(user.name)} |</span>
+              <span className={s.user_info_username}>{highlightText(user.username)} |</span>
+              <span className={s.user_info_email}>{highlightText(user.email)}</span>
             </div>
             <button
               className={s.del_button}

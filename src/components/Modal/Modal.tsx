@@ -34,13 +34,13 @@ const Modal: React.FC<Props> = (props) => {
       {isModalOpen || (
         <div className={s.modal} onClick={() => modalHandler()}>
           <div className={s.modal_window}>
-            <p>
+            <div>
               <p className={s.title}>Company:</p> {company.name}
-            </p>
-            <p>
+            </div>
+            <div>
               <p className={s.title}>Address:</p> {address.city},{' '}
               {address.street}, {address.suite}
-            </p>
+            </div>
           </div>
         </div>
       )}
