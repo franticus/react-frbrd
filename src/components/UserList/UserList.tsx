@@ -16,6 +16,7 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     users.length || fetchUsers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,9 +92,8 @@ const UserList: React.FC = () => {
           <li
             className={s.user_item}
             key={user.id}
-            onClick={() => handleChoosenUser(user.id)}
           >
-            <div className={s.user_info}>
+            <div className={s.user_info} onClick={() => handleChoosenUser(user.id)}>
               <span className={s.user_info_name}>{highlightText(user.name)} |</span>
               <span className={s.user_info_username}>{highlightText(user.username)} |</span>
               <span className={s.user_info_email}>{highlightText(user.email)}</span>

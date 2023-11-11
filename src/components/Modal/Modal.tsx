@@ -21,7 +21,6 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = (props) => {
-  console.log('props:', props);
   const { address, company } = props.user;
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -33,6 +32,15 @@ const Modal: React.FC<Props> = (props) => {
     <>
       {isModalOpen || (
         <div className={s.modal} onClick={() => modalHandler()}>
+          <div className={s.modal_window}>
+            <div>
+              <p className={s.title}>Company:</p> {company.name}
+            </div>
+            <div>
+              <p className={s.title}>Address:</p> {address.city},{' '}
+              {address.street}, {address.suite}
+            </div>
+          </div>
           <div className={s.modal_window}>
             <div>
               <p className={s.title}>Company:</p> {company.name}
