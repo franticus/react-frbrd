@@ -1,5 +1,5 @@
 import * as UserActionCreator from './user';
 
-export default {
-  ...UserActionCreator,
-};
+const userActionCreators = { ...UserActionCreator };
+
+export default userActionCreators;
