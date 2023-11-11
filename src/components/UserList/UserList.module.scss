@@ -1,14 +1,30 @@
+h1 {
+  color: #fff;
+}
+
 .filter {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px auto;
 
   &_input {
     padding: 10px 20px;
-    border-radius: 20px;
+    font-size: 24px;
+    border-radius: 0 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 80%;
+    width: 70%;
+    max-width: 800px;
+    background: #eee;
+    outline: 4px solid rgba(255, 255, 255, 0.3);
+    transition: outline 1s;
+  }
+
+  &_input:focus {
+    outline: 8px solid rgba(53, 193, 21, 0.5);
   }
 }
 
@@ -19,20 +35,28 @@
   justify-content: center;
   list-style: none;
   width: 80%;
+  max-width: 1000px;
   gap: 10px;
   margin: 0 auto;
 }
 
 .user_item {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: #333;
-  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #222;
+  border-radius: 0 20px;
   width: 100%;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  transition: all 1s;
+
+  &:hover {
+    transform: scale(1.02);
+    border-left: 10px solid rgba(197, 25, 25, 0.5);
+    border-right: 10px solid rgba(197, 25, 25, 0.5);
+  }
 }
 
 .user_info {
@@ -55,7 +79,26 @@
   }
 }
 
-.button {
+.reset_button {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s;
+  color: #fff;
+  font-size: 20px;
+  min-width: 40px;
+  padding: 10px 20px;
+
+  &:hover:hover {
+    cursor: pointer;
+    background: #ff5d5d;
+    border: 1px solid #ff5d5d;
+    transform: scale(1.05);
+  }
+}
+
+.del_button {
   cursor: pointer;
   background: transparent;
   border-radius: 10px;
@@ -74,7 +117,7 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 400px) {
   .user_item {
     flex-wrap: wrap;
     justify-content: center;

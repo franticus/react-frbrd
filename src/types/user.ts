@@ -4,6 +4,13 @@ export interface UserState {
   error: null | string;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+}
+
 export enum UserActionTypes {
   FETCH_USERS = 'FETCH_USERS',
   FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',
