@@ -4,6 +4,8 @@ import { useActions } from '../../hooks/useActions';
 import { User } from '../../types/user';
 import s from './UserList.module.scss';
 import Modal from '../Modal/Modal';
+import { highlightText } from '../../utils/highlightText';
+import SearchField from '../SearchField/SearchField';
 
 const UserList: React.FC = () => {
   const { users, error, loading } = useTypedSelector((state) => state.user);
@@ -12,11 +14,11 @@ const UserList: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
-  const [choosenUser, setChoosenUser] = useState<User | undefined>();
+  const [choosenUser, setChoosenUser] = useState<User | null>(null);
 
   useEffect(() => {
-    users.length || fetchUsers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +41,8 @@ const UserList: React.FC = () => {
   };
 
   const handleChoosenUser = (userId: string) => {
-    const choosenUser = filteredUsers.find((item) => item.id === userId);;
+    const choosenUser =
+      filteredUsers.find((item) => item.id === userId) || null;
     setChoosenUser(choosenUser);
   };
 
@@ -47,23 +50,12 @@ const UserList: React.FC = () => {
     setFilteredUsers(users);
   };
 
-  const highlightText = (text: string) => {
-    if (!searchTerm) return text;
-    let idx = text.toLowerCase().indexOf(searchTerm.toLowerCase());
-    console.log('idx:', idx)
-    if (idx !== -1) {
-      let before = text.substring(0, idx);
-      let highlight = text.substring(idx, idx + searchTerm.length);
-      let after = text.substring(idx + searchTerm.length);
-      return (
-        <span>
-          {before}
-          <span className={s.highlight}>{highlight}</span>
-          {after}
-        </span>
-      );
-    }
-    return text;
+  const renderModal = () => {
+    return (
+      choosenUser && (
+        <Modal user={choosenUser} onClose={() => setChoosenUser(null)} />
+      )
+    );
   };
 
   if (loading) {
@@ -75,28 +67,27 @@ const UserList: React.FC = () => {
 
   return (
     <div>
-      <div className={s.filter}>
-        <input
-          className={s.filter_input}
-          type='text'
-          placeholder='Filter...'
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-        <button className={s.reset_button} onClick={() => handleResetUsers()}>
-          Reset
-        </button>
-      </div>
+      <SearchField
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        handleResetUsers={handleResetUsers}
+      />
       <ul className={s.user_list}>
         {filteredUsers.map((user) => (
-          <li
-            className={s.user_item}
-            key={user.id}
-          >
-            <div className={s.user_info} onClick={() => handleChoosenUser(user.id)}>
-              <span className={s.user_info_name}>{highlightText(user.name)} |</span>
-              <span className={s.user_info_username}>{highlightText(user.username)} |</span>
-              <span className={s.user_info_email}>{highlightText(user.email)}</span>
+          <li className={s.user_item} key={user.id}>
+            <div
+              className={s.user_info}
+              onClick={() => handleChoosenUser(user.id)}
+            >
+              <span className={s.user_info_name}>
+                {highlightText(user.name, searchTerm)} |
+              </span>
+              <span className={s.user_info_username}>
+                {highlightText(user.username, searchTerm)} |
+              </span>
+              <span className={s.user_info_email}>
+                {highlightText(user.email, searchTerm)}
+              </span>
             </div>
             <button
               className={s.del_button}
@@ -107,8 +98,7 @@ const UserList: React.FC = () => {
           </li>
         ))}
       </ul>
-
-      {choosenUser ? <Modal user={choosenUser} /> : ''}
+      {renderModal()}
     </div>
   );
 };
