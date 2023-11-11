@@ -1,0 +1,53 @@
+.user_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  width: 80%;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.user_item {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.user_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.button {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: all 0.3s;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: #ff5d5d;
+  border: 1px solid #ff5d5d;
+  color: #fff;
+}
+
+@media (max-width: 360px) {
+  .user_item {
+    flex-wrap: wrap;
+  }
+}
