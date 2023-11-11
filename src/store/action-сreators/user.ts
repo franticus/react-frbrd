@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { UserAction, UserActionTypes } from '../../types/user';
+import { UserAction, UserActionTypes } from '../../components/UserList/User.types';
 import axios from 'axios';
 
 export const fetchUsers = () => {

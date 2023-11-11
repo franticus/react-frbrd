@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Modal.module.scss';
-import { ModalProps } from '../../types/modal';
+import { ModalProps } from './Modal.types';
 
 const Modal: React.FC<ModalProps> = (props) => {
   const { address, company } = props.user;

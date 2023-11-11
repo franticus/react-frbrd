@@ -23,3 +23,22 @@
     outline: 8px solid rgba(53, 193, 21, 0.5);
   }
 }
+
+.reset_button {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s;
+  color: #fff;
+  font-size: 20px;
+  min-width: 40px;
+  padding: 10px 10px;
+
+  &:hover:hover {
+    cursor: pointer;
+    background: #ff5d5d;
+    border: 1px solid #ff5d5d;
+    transform: scale(1.05);
+  }
+}

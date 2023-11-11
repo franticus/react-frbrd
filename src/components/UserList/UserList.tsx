@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
-import { User } from '../../types/user';
-import s from './UserList.module.scss';
-import Modal from '../Modal/Modal';
+import { User } from './User.types';
 import { highlightText } from '../../utils/highlightText';
+import Modal from '../Modal/Modal';
 import SearchField from '../SearchField/SearchField';
+import s from './UserList.module.scss';
 
 const UserList: React.FC = () => {
   const { users, error, loading } = useTypedSelector((state) => state.user);
-  console.log('users:', users);
   const { fetchUsers } = useActions();
 
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -18,7 +17,6 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
