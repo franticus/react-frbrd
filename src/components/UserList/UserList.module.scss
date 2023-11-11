@@ -14,7 +14,7 @@ h1 {
   &_input {
     padding: 10px 20px;
     font-size: 24px;
-    border-radius: 0 20px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     width: 70%;
     max-width: 800px;
@@ -41,9 +41,10 @@ h1 {
 }
 
 .user_item {
+  cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #222;
-  border-radius: 0 20px;
+  border-radius: 20px;
   width: 100%;
   padding: 10px 20px;
   display: flex;

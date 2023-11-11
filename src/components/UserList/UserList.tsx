@@ -3,13 +3,16 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 import { User } from '../../types/user';
 import s from './UserList.module.scss';
+import Modal from '../Modal/Modal';
 
 const UserList: React.FC = () => {
   const { users, error, loading } = useTypedSelector((state) => state.user);
+  console.log('users:', users);
   const { fetchUsers } = useActions();
 
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+  const [choosenUser, setChoosenUser] = useState<User | undefined>();
 
   useEffect(() => {
     users.length || fetchUsers();
@@ -32,6 +35,11 @@ const UserList: React.FC = () => {
   const handleDeleteUsers = (userId: string) => {
     const deleteUser = filteredUsers.filter((item) => item.id !== userId);
     setFilteredUsers(deleteUser);
+  };
+
+  const handleChoosenUser = (userId: string) => {
+    const choosenUser = filteredUsers.find((item) => item.id === userId);;
+    setChoosenUser(choosenUser);
   };
 
   const handleResetUsers = () => {
@@ -61,7 +69,11 @@ const UserList: React.FC = () => {
       </div>
       <ul className={s.user_list}>
         {filteredUsers.map((user) => (
-          <li className={s.user_item} key={user.id}>
+          <li
+            className={s.user_item}
+            key={user.id}
+            onClick={() => handleChoosenUser(user.id)}
+          >
             <div className={s.user_info}>
               <span className={s.user_info_name}>{user.name} |</span>
               <span className={s.user_info_username}>{user.username} |</span>
@@ -76,6 +88,8 @@ const UserList: React.FC = () => {
           </li>
         ))}
       </ul>
+
+      {choosenUser ? <Modal user={choosenUser} /> : ''}
     </div>
   );
 };

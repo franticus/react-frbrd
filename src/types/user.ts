@@ -1,7 +1,12 @@
-export interface UserState {
-  users: any[];
-  loading: boolean;
-  error: null | string;
+export interface UserAddress {
+  city: string;
+  street: string;
+  suite: string;
+  zipcode: string;
+  geo?: {
+    lat: string;
+    lng: string;
+  };
 }
 
 export interface User {
@@ -9,6 +14,16 @@ export interface User {
   name: string;
   username: string;
   email: string;
+  address: UserAddress;
+  company: {
+    name: string;
+  };
+}
+
+export interface UserState {
+  users: User[];
+  loading: boolean;
+  error: null | string;
 }
 
 export enum UserActionTypes {
